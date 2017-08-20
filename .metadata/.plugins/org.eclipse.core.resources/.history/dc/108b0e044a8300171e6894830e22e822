@@ -1,0 +1,42 @@
+package org.munna.resources;
+
+import java.sql.Date;
+
+import javax.ws.rs.CookieParam;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.MatrixParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+
+@Path("/param")
+public class ParamRsource {
+	
+	@GET
+	@Path("/One")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String testParamAnnotations(@MatrixParam("year") int year ,@HeaderParam("Cache-Control") String date,@HeaderParam("Content-Type") String name,@CookieParam("name") String cookie) {
+		System.out.println(date);
+		return "year is "+year +" User Agent "+date +" name "+name +" Cookie "+cookie;
+		
+	}
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/Two")
+	public String testFormparam(@FormParam("id") int id,@FormParam("name") String name ) {
+		return "id : "+id+"name "+name;
+	}
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("context")
+	public String contextBeanParam(@Context HttpHeaders headers){
+		
+		return headers.getRequestHeaders().toString();
+	}
+}

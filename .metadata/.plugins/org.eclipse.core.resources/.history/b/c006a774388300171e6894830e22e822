@@ -1,0 +1,19 @@
+package org.munna.resources;
+
+import java.util.Date;
+
+public class ParamTest {
+	private Date header;
+	
+	public Date getHeader() {
+		return header;
+	}
+
+	public void setHeader(Date header) {
+		this.header = header;
+	}
+
+	public ParamTest(Date header) {
+		this.header=header;
+	}
+}

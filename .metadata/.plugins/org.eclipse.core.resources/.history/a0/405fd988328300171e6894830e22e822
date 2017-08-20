@@ -1,0 +1,20 @@
+package org.munna.resources;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.MatrixParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/param")
+public class ParamRsource {
+	
+	@GET
+	@Path("{year}/One")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String testParamAnnotations(@PathParam("year") int year) {
+		return "year is "+year;
+	}
+
+}

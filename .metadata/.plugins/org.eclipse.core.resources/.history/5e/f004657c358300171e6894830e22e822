@@ -1,0 +1,22 @@
+package org.munna.resources;
+
+import javax.ws.rs.CookieParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.MatrixParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/param")
+public class ParamRsource {
+	
+	@GET
+	@Path("/One")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String testParamAnnotations(@MatrixParam("year") int year ,@HeaderParam("date") ParamTest test,@HeaderParam("Content-Type") String name,@CookieParam("name") String cookie) {
+		return "year is "+year +" User Agent "+test.getHeader() +" name "+name +" Cookie "+cookie;
+	}
+
+}

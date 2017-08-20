@@ -1,0 +1,61 @@
+package org.munna.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+
+
+import org.munna.database.DatabaseClass;
+
+import org.munna.model.Profile;
+
+public class ProfileService {
+	
+	
+private static Map<String,Profile> profiles = DatabaseClass.getProfiles();
+	
+	public ProfileService() {
+		profiles.put("manuSD", new Profile(1l, "manuSD", "Syed", "Munna"));
+		profiles.put("RabbuShk", new Profile(2l, "RabbuShk", "Shaik", "Rabbani"));
+	}
+	//to get all the messages 
+	public List<Profile> getProfiles()
+	{
+		return  new ArrayList<Profile>(profiles.values());
+	}
+	
+	//to get a particular message
+	public Profile getProfile(String profileName)
+	{
+		return profiles.get(profileName);
+	}
+	
+	//adding one message
+	public Profile addProfile(Profile profile)
+	{
+		profile.setId(profiles.size()+1);
+		profiles.put(profile.getProfileName(), profile);
+		return profile;
+	}
+	
+	//updating Message
+	public Profile updateProfile(Profile profile)
+	{
+		if(profile.getProfileName().isEmpty())
+		{
+			return null;
+		}
+		Profile prof =profiles.get(profile.getProfileName());
+		profile.setId(prof.getId());
+		profiles.put(profile.getProfileName(), profile);
+		return profile;
+	}
+	
+	//Removing a Message
+	public void removeProfile(String  profileName)
+	{
+		 profiles.remove(profileName);
+	}
+	
+}
